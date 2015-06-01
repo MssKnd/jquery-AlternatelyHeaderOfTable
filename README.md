@@ -1,4 +1,4 @@
-# AlternatelyHeaderOfTable
+# Alternately Header of Table
 jQuery Plug-in
 
 # How to Use
