@@ -19,7 +19,7 @@ td {
     white-space: nowrap;
 }
 
-.headerFix .th {
+table .header {
   background-color : red
 }
 
