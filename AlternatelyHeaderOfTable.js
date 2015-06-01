@@ -1,3 +1,11 @@
+/*!
+ * jQuery.AlternatelyHeaderOfTable.js
+ *
+ * Repository: https://github.com/MssKnd/jquery-AlternatelyHeaderOfTable
+ * License:    MIT
+ * Author:     Masashi Kondo
+ */
+ 
 ;(function($) {
 	$.fn.AlternatelyHeaderOfTable = function() {
 		var tableHeaders = [];
