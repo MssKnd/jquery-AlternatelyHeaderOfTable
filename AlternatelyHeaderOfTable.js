@@ -5,7 +5,7 @@
  * License:    MIT
  * Author:     Masashi Kondo
  */
- 
+
 ;(function($) {
 	$.fn.AlternatelyHeaderOfTable = function() {
 		var tableHeaders = [];
@@ -16,18 +16,29 @@
 		for(var i=0;i<ths.length;i++){
 			var headerInfo = {};
 			headerInfo.header = $(ths[i]);
+			headerInfo.header.css({"width":"100%"});
 			headerInfo.offset = ths[i].offsetTop;
 			headerInfo.height = $(ths[i]).height();
 			$(ths[i]).css({"position":"static"});
+			setTdWidth(ths[i]);
 			tableHeaders.push(headerInfo);
 		}
 		table.prepend(
 			$(ths[0])
 				.clone()
+				.removeClass()
+				.css('width','')
 				.addClass("dummy")
 				.hide()
 		);
 		var dummy = $(table).children(".dummy");
+		
+		function setTdWidth(tbody){
+			var tds = $(tbody).find('td');
+			$.each(tds,function() {
+				$(this).css('width',$(this).width()+'px')
+			});
+		}
 		
 		$(window).scroll(function () {
 			var movingIndex = 0;
@@ -50,11 +61,13 @@
 			dummy.show();
 			if( ( movingPos > 0 && movingIndex === 0 ) || ( 0 > tableOffsetTop + table.height() - scrollTop ) ){
 				tableHeaders[movingIndex].header.css({
+					"top":"",
 					"position": "static"
 				});
 				dummy.hide();
 			}else if( 0 > tableOffsetTop + table.height() - scrollTop - tableHeaders[movingIndex].height){
 				tableHeaders[movingIndex].header.css({
+					"top":"",
 					"bottom": 0,
 					"position": "absolute"
 				});
@@ -66,9 +79,11 @@
 				});
 			}else if( movingPos > 0 && movingIndex !== 0 ){
 				tableHeaders[movingIndex-1].header.css({
+					"top":"",
 					"position": "absolute"
 				});
 				tableHeaders[movingIndex].header.css({
+					"top":"",
 					"position": "static"
 				});
 				$(tableHeaders[movingIndex].header).removeClass("fixing");
@@ -80,9 +95,11 @@
 				});
 			}else if( nextPos < 0 ){
 				tableHeaders[movingIndex+1].header.css({
+					"top":"",
 					"position": "absolute"
 				});
 				tableHeaders[movingIndex].header.css({
+					"top":"",
 					"position": "static"
 				});
 				$(tableHeaders[movingIndex].header).removeClass("fixing");

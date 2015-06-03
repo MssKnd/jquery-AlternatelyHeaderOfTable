@@ -5,23 +5,27 @@
 }
 
 body {
-  background: #dff;
+  //background: #dff;
   font: 30px sans-serif;
 }
 table{
-    border-collapse:collapse;
+    //border-collapse:collapse;
+    //width:30%;
     margin: 10px;
 }
 
 td {
-    height:40px;
-    border: solid 1px #333;
-    white-space: nowrap;
+    //height:40px;
+    //border: solid 1px #333;
+    //white-space: nowrap;
 }
 
 table .header {
-  background-color : red
+  color: white;
+  font-weight: bold;
+  background-color : rgba(0, 0, 0, 0.8)
 }
+//table .header td{ width:33.33%;}
 
 .headerFix .dummy {
   //background-color : yellow
