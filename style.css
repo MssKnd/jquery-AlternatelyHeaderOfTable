@@ -8,10 +8,16 @@ body {
   //background: #dff;
   font: 30px sans-serif;
 }
+h1 {
+  border-bottom: solid #ccc 3px;
+}
+h2 {
+  border-bottom: solid #eee 2px;
+}
 table{
     //border-collapse:collapse;
     //width:30%;
-    margin: 10px;
+    //margin: 10px;
 }
 
 td {
@@ -25,7 +31,11 @@ table .header {
   font-weight: bold;
   background-color : rgba(0, 0, 0, 0.8)
 }
-//table .header td{ width:33.33%;}
+#container {
+  margin: 0 auto;
+  width: 80%;
+  margin-bottom: 500px;
+}
 
 .headerFix .dummy {
   //background-color : yellow

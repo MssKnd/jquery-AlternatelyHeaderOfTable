@@ -11,32 +11,33 @@
 		var tableHeaders = [];
 		var ths = this; // Table Headers
 		var table = $(ths[0]).parent();
-		$(table).css({"position":"relative"});
-
-		for(var i=0;i<ths.length;i++){
-			var headerInfo = {};
-			headerInfo.header = $(ths[i]);
-			headerInfo.header.css({"width":"100%"});
-			headerInfo.offset = ths[i].offsetTop;
-			headerInfo.height = $(ths[i]).height();
-			$(ths[i]).css({"position":"static"});
-			setTdWidth(ths[i]);
-			tableHeaders.push(headerInfo);
-		}
+		$(table).css('position','relative');
 		table.prepend(
-			$(ths[0])
-				.clone()
-				.removeClass()
-				.css('width','')
-				.addClass("dummy")
-				.hide()
-		);
-		var dummy = $(table).children(".dummy");
+					$(ths[0])
+						.clone()
+						.removeClass()
+						.addClass("dummy_AHOT")
+						.hide()
+				);
+		var dummy = $(table).children(".dummy_AHOT");
+
+		$.each(ths,function(){
+			$(this).css({
+				"width":"100%",
+				"position":"static"
+			});
+			setTdWidth(this);
+			tableHeaders.push({
+				'header': $(this),
+				'offset': this.offsetTop,
+				'height': $(this).height()
+			});
+		});
 		
 		function setTdWidth(tbody){
 			var tds = $(tbody).find('td');
 			$.each(tds,function() {
-				$(this).css('width',$(this).width()+'px')
+				$(this).css('width', $(this).outerWidth()+'px')
 			});
 		}
 		
@@ -45,7 +46,7 @@
 			var scrollTop = $(window).scrollTop();
 
 			for(var i=0;i<tableHeaders.length;i++){
-				if($(tableHeaders[i].header).hasClass("fixing")){
+				if($(tableHeaders[i].header).hasClass("fixing_AHOT")){
 					movingIndex = i;
 					break;
 				}
@@ -86,8 +87,8 @@
 					"top":"",
 					"position": "static"
 				});
-				$(tableHeaders[movingIndex].header).removeClass("fixing");
-				$(tableHeaders[movingIndex-1].header).addClass("fixing");
+				$(tableHeaders[movingIndex].header).removeClass("fixing_AHOT");
+				$(tableHeaders[movingIndex-1].header).addClass("fixing_AHOT");
 			}else if( nextPos - tableHeaders[movingIndex].height < 0 && nextPos > 0 ){
 				tableHeaders[movingIndex].header.css({
 					"top": tableHeaders[movingIndex+1].offset - tableHeaders[movingIndex+1].height,
@@ -95,18 +96,17 @@
 				});
 			}else if( nextPos < 0 ){
 				tableHeaders[movingIndex+1].header.css({
-					"top":"",
+					"top": tableHeaders[movingIndex+1].offset - tableHeaders[movingIndex+1].height,
 					"position": "absolute"
 				});
 				tableHeaders[movingIndex].header.css({
 					"top":"",
 					"position": "static"
 				});
-				$(tableHeaders[movingIndex].header).removeClass("fixing");
-				$(tableHeaders[movingIndex+1].header).addClass("fixing");
+				$(tableHeaders[movingIndex].header).removeClass("fixing_AHOT");
+				$(tableHeaders[movingIndex+1].header).addClass("fixing_AHOT");
 			}
 		});
-
 		return this;
 	};
 })(jQuery);
