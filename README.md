@@ -32,3 +32,5 @@ Instruction(Japanese)
 ```js
 $("table tbody.header").AlternatelyHeaderOfTable();
 ```
+##License
+Licensed under the MIT License.
